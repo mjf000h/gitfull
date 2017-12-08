@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/jquery.fullPage.css">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery.fullPage.min.js"></script>
+    <script src='js/stopExecutionOnTimeout.js'></script>
+    <script src='js/prefixfree.min.js'></script>
+</head>
+<style>
+    *{
+        margin:0;
+        padding: 0;
+        list-style: none;
+    }
+    img{
+        border: none;
+    }
+    .section {
+        width: 100%;
+        height: 800px;
+        text-align: center;
+        font: 30px "Microsoft Yahei";
+        color: #000000;
+        border: 1px solid #000000;
+        position: relative;
+    }
+    .section .imgBox{
+        width: 100%;
+        height:100%;
+        position: absolute;
+        left:0;
+        top:0;
+        margin:0 auto;
+        /*background: #2aece8;*/
+    }
+    .active .imgBox p{
+        transform: scale(1);
+        transition-delay: 0.8s;
+    }
+    .imgBox img{
+        width: 100%;
+        display: block;
+    }
+    .imgBox p{
+        width: 100%;
+        height: 400px;
+        position: absolute;
+        top:300px;
+        left:0;
+        font-size: 30px;
+        font-family: "宋体" ;
+        color: #fffdef;
+        transform: scale(0);
+        transition: all 1s;
+    }
+    ul.footer{
+        width: 800px;
+        height:200px;
+        /*background: #ffac13;*/
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        margin-left: 450px;
+        display: flex;
+        justify-content: space-between;
+    }
+    ul.footer li{
+        width:200px;
+        height: 200px;
+        border-radius: 50%;
+        /*background: #fffdef;*/
+        transform: scale(0);
+    }
+    ul.footer li img{
+        width:200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 2px solid #fffdef;
+        display: block;
+    }
+    .active ul.footer li{
+        -webkit-animation:boteaseinAnimate 1s ease .5s forwards;
+        animation:boteaseinAnimate 2s ease .5s forwards;
+        transform: scale(1);
+    }
+    ul.top{
+        width: 1000px;
+        height:200px;
+        /*background: #ffac13;*/
+        position: absolute;
+        left: 0;
+        top: 500px;
+        margin-left: 330px;
+        display: flex;
+        justify-content: space-between;
+        z-index: 6666;
+    }
+    ul.top li{
+        width:200px;
+        height:200px;
+        /*background: #fffdef;*/
+        transform: scale(0);
+    }
+    ul.top li img{
+        width: 100%;
+        height: 100%;
+        display: block;
+        border: 1px solid #fffdef;
+    }
+    .active ul.top li{
+        -webkit-animation:bounceinDownAnimate 1s ease .5s forwards;
+        animation:bounceinDownAnimate 2s ease .5s forwards;
+        transform: scale(1);
+    }
+    @-webkit-keyframes bounceinDownAnimate {
+        0% {
+            -webkit-transform:translateY(-200px);
+        }
+        30% {
+            -webkit-transform:translateY(30px);
+        }
+        70% {
+            -webkit-transform:translateY(-10px);
+        }
+        100% {
+            -webkit-transform:translateY(0px);
+        }
+    }
+    @-webkit-keyframes boteaseinAnimate {
+        0% {
+            -webkit-transform:translateY(200px);
+            opacity:0;
+        }
+        100% {
+            -webkit-transform:translateY(0px);
+            opacity:1;
+        }
+    }@keyframes boteaseinAnimate {
+         0% {
+             transform:translateY(200px);
+             opacity:0;
+         }
+         100% {
+             transform:translateY(0px);
+             opacity:1;
+         }
+     }
+    ul.third{
+        width: 800px;
+        height:200px;
+        /*background: #ffac13;*/
+        position: absolute;
+        left: 0;
+        bottom: 10px;
+        margin-left: 450px;
+        display: flex;
+        justify-content: space-between;
+    }
+    ul.third li{
+        width:200px;
+        height:200px;
+        /*background: #fffdef;*/
+        transform: scale(0);
+    }
+    ul.third li img{
+        width:200px;
+        height:200px;
+        border-radius: 50%;
+        display: block;
+        border:1px solid lightcyan;
+    }
+    .active ul.third li{
+        -webkit-animation:boteaseinAnimate 1s ease .5s forwards;
+        animation:boteaseinAnimate 2s ease .5s forwards;
+        transform: scale(1);
+    }
+    ul.four{
+        width: 800px;
+        height:200px;
+        /*background: #ffac13;*/
+        position: absolute;
+        left: 0;
+        top: 400px;
+        margin-left: 450px;
+        display: flex;
+        justify-content: space-between;
+    }
+    ul.four li{
+        width:200px;
+        height:200px;
+        /*background: #fffdef;*/
+        transform: scale(0);
+    }
+    ul.four li img{
+        width:200px;
+        height:200px;
+        border-radius: 50%;
+        display: block;
+        border:1px solid lightcyan;
+    }
+    .active ul.four li{
+        -webkit-animation:bounceinDownAnimate 1s ease .5s forwards;
+        animation:bounceinDownAnimate 2s ease .5s forwards;
+        transform: scale(1);
+    }
+    @-webkit-keyframes bounceinDownAnimate {
+        0% {
+            -webkit-transform:translateY(-200px);
+        }
+        30% {
+            -webkit-transform:translateY(30px);
+        }
+        70% {
+            -webkit-transform:translateY(-10px);
+        }
+        100% {
+            -webkit-transform:translateY(0px);
+        }
+    }
+    @-webkit-keyframes boteaseinAnimate {
+        0% {
+            -webkit-transform:translateY(200px);
+            opacity:0;
+        }
+        100% {
+            -webkit-transform:translateY(0px);
+            opacity:1;
+        }
+    }@keyframes boteaseinAnimate {
+         0% {
+             transform:translateY(200px);
+             opacity:0;
+         }
+         100% {
+             transform:translateY(0px);
+             opacity:1;
+         }
+     }
+    @keyframes rotate {
+        0% {
+            transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(0);
+        }
+        100% {
+            transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(-360deg);
+        }
+    }
+    div.word{
+        width: 600px;
+        height:600px;
+        /*background: #ffac13;*/
+        position: absolute;
+        left: 0;
+        top: 120px;
+        margin-left: 600px;
+        display: flex;
+        justify-content: space-between;
+        transform: scale(0);
+    }
+    div.word>p{
+        margin-top: 200px;
+    }
+    .active div.word {
+        -webkit-animation:rotateinleftbotAnimate 1s ease forwards;
+        animation:rotateinleftbotAnimate 2s ease forwards;
+        transform: scale(1);
+    }
+    div.word>p{
+        width: 100%;
+        height: 200px;
+        position: absolute;
+        top:0;
+        left:0;
+        font-size: 30px;
+        font-family: "宋体";
+        color: #fffdef;
+    }
+    @-webkit-keyframes rotateinleftbotAnimate {
+        0% {
+            -webkit-transform-origin:left bottom;
+            -webkit-transform:rotate(-90deg);
+        }
+        100% {
+            -webkit-transform-origin:left bottom;
+            -webkit-transform:rotate(0deg);
+        }
+    }@keyframes rotateinleftbotAnimate {
+         0% {
+             transform-origin:left bottom;
+             transform:rotate(-90deg);
+         }
+         100% {
+             transform-origin:left bottom;
+             transform:rotate(0deg);
+         }
+     }
+    .stars {
+        transform: perspective(500px);
+        transform-style: preserve-3d;
+        position: absolute;
+        bottom: 0;
+        perspective-origin: 50% 100%;
+        left: 50%;
+        animation: rotate 90s infinite linear;
+    }
+
+    .star {
+        width: 2px;
+        height: 2px;
+        background: #F7F7B6;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform-origin: 0 0 -300px;
+        transform: translate3d(0, 0, -300px);
+        backface-visibility: hidden;
+    }
+</style>
+<body>
+<audio src="music/zgz.mp3" autoplay></audio>
+<div id="dowebok">
+    <div class="section">
+        <div class="imgBox">
+            <img src="images/section10.jpg" alt="">
+            <p>追光者<br><br>--Everyone is the same--</p>
+        </div>
+        <ul class="footer">
+            <li><img src="images/c68a194aly1fdfts8ip6cj20u00u0dpp.jpg" alt=""></li>
+            <li><img src="images/c68a194aly1fdfts66d3gj20u00tzthq.jpg" alt=""></li>
+            <li><img src="images/006RAN0uly1fkl5wmbon7j32kw3vc7wj.jpg" alt=""></li>
+        </ul>
+    </div>
+    <div class="section">
+        <ul class="top">
+            <li><img src="images/006RAN0uly1fji42wxybyj30u011h7eh.jpg" alt=""></li>
+            <li><img src="images/006RAN0uly1fjk3vc3p8dj30j60srdjh.jpg" alt=""></li>
+            <li><img src="images/006RAN0uly1fkwnn13gnvj30u011iwgm.jpg" alt=""></li>
+            <li><img src="images/c68a194aly1fbp2sn4fh3j20dw0dwmyy.jpg" alt=""></li>
+        </ul>
+        <div class="imgBox">
+            <img src="images/hd-3.jpg" alt="">
+            <p>如果说你是海上的烟火<br><br>The world is his who enjoys it.<br><br>我是浪花的泡沫</p>
+        </div>
+    </div>
+    <div class="section">
+        <div class="imgBox">
+            <img src="images/hd-2.jpg" alt="">
+            <p>PRECIOUS</p>
+        </div>
+        <ul class="third">
+            <li><img src="images/7.jpg" alt=""></li>
+            <li><img src="images/1.jpg" alt=""></li>
+            <li><img src="images/2.jpg" alt=""></li>
+        </ul>
+        <ul class="four">
+            <li><img src="images/c68a194aly1fdftt15q73j20hs0hsq50.jpg" alt=""></li>
+            <li><img src="images/c68a194agy1fh5iz6zlakj21ry1ry7wi.jpg" alt=""></li>
+            <li><img src="images/c68a194aly1ffnf0bkxi4j20b90go0tr.jpg" alt=""></li>
+        </ul>
+    </div>
+    <div class="section">
+        <div class="imgBox">
+            <img src="images/hd-4.jpg" alt="">
+        </div>
+        <div class="word">
+           <p>不露声色<br><br>Live beautifully, dream passionately, love completely.<br><br>Fear not that the life shall come to an end, but rather fear that it shall never have a beginning. --          J.H. Newman 　　·</p>
+        </div>
+    </div>
+</div>
+<div class="stars">
+
+</div>
+</body>
+</html>
+<script>
+    $(function(){
+        $('#dowebok').fullpage({
+            // sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90'],
+            anchors: ['page1', 'page2', 'page3', 'page4'],
+            menu: '#menu',
+            'navigation': true
+        });
+        $(document).ready(function () {
+            var stars = 800;
+            var $stars = $('.stars');
+            var r = 800;
+            for (var i = 0; i < stars; i++) {
+                if (window.CP.shouldStopExecution(1)) {
+                    break;
+                }
+                var $star = $('<div/>').addClass('star');
+                $stars.append($star);
+            }
+            window.CP.exitedLoop(1);
+            $('.star').each(function () {
+                var cur = $(this);
+                var s = 0.2 + Math.random() * 1;
+                var curR = r + Math.random() * 300;
+                cur.css({
+                    transformOrigin: '0 0 ' + curR + 'px',
+                    transform: ' translate3d(0,0,-' + curR + 'px) rotateY(' + Math.random() * 360 + 'deg) rotateX(' + Math.random() * -50 + 'deg) scale(' + s + ',' + s + ')'
+                });
+            });
+        });
+    });
+
+</script>
